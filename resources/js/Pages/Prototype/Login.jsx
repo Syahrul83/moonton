@@ -1,6 +1,14 @@
 import TextInput from "@/Components/TextInput"
+import InputLabel from "@/Components/InputLabel"
+import DangerButton from "@/Components/DangerButton"
+import { Link, Head } from "@inertiajs/inertia-react";
+
+
 export default function login(){
-    return <div className="mx-auto max-w-screen min-h-screen bg-black text-white md:px-10 px-3">
+    return (
+        <>
+    <Head title="Login" />
+    <div className="mx-auto max-w-screen min-h-screen bg-black text-white md:px-10 px-3">
     <div className="fixed top-[-50px] hidden lg:block">
         <img src="/images/signup-image.png"
             className="hidden laptopLg:block laptopLg:max-w-[450px] laptopXl:max-w-[640px]" alt=""/>
@@ -20,38 +28,59 @@ export default function login(){
             <form className="w-[370px]">
                 <div className="flex flex-col gap-6">
                     <div>
-                        <label className="text-base block mb-2">Email Address</label>
+                    <InputLabel
+                        forInput="email"
+                        value="Email Address"
+                        />
                         {/* <input type="email" name="email"
                             className="rounded-2xl bg-form-bg py-[13px] px-7 w-full focus:outline-alerange focus:outline-none"
                             placeholder="Email Address" /> */}
 
                             <TextInput
-                           type="email" name="email"
+                            type="email"
+                             name="email"
                             placeholder="Email Address"
                             />
                     </div>
                     <div>
-                        <label className="text-base block mb-2">Password</label>
-                        <input type="password" name="password"
-                            className="rounded-2xl bg-form-bg py-[13px] px-7 w-full focus:outline-alerange focus:outline-none"
+                        <InputLabel
+                        forInput="password"
+                        value="password"
+                        />
+                        <TextInput type="password" name="password"
                             placeholder="Password" />
                     </div>
                 </div>
                 <div className="grid space-y-[14px] mt-[30px]">
-                    <a href="/" className="rounded-2xl bg-alerange py-[13px] text-center">
+                    {/* <a href="/" className="rounded-2xl bg-alerange py-[13px] text-center">
                         <span className="text-base font-semibold">
                             Start Watching
                         </span>
-                    </a>
-                    <a href="sign_up.html" className="rounded-2xl border border-white py-[13px] text-center">
+                    </a> */}
+
+                    <DangerButton type="button" variant="primary">
+                    <span className="text-base font-semibold">
+                            Start Watching
+                        </span>
+                    </DangerButton>
+                    {/* <a href="sign_up.html" className="rounded-2xl border border-white py-[13px] text-center">
                         <span className="text-base text-white">
                             Create New Account
                         </span>
-                    </a>
+                    </a> */}
+           <Link href={route('prototype.register')}>
+               <DangerButton type="button" variant="light-outline">
+                    <span className="text-base text-white">
+                            Create New Account
+                        </span>
+                    </DangerButton>
+               </Link>
 
                 </div>
             </form>
         </div>
     </div>
 </div>
+</>
+);
 }

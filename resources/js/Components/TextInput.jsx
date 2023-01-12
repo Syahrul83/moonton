@@ -33,9 +33,10 @@ export default forwardRef(function TextInput(
         name={name}
         id={id}
         value={value}
-        className={
-          'rounded-2xl bg-form-bg py-[13px] px-7 w-full focus:outline-alerange focus:outline-none input-${variant} ${className}'
-        }
+        defaultValue={defaultValue}
+        className={`rounded-2xl bg-form-bg py-[13px] px-7 w-full ${
+          isError && 'input-error'
+        } input-${variant} ${className}`}
         ref={input}
         autoComplete={autoComplete}
         required={required}
