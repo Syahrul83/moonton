@@ -53,6 +53,10 @@ Route::prefix('/prototype')
             return Inertia::render('Prototype/Dashboard');
             // return 'dahsboard';
         })->name('Dashboard');
+        Route::get('/subcriptionplan', function () {
+            return Inertia::render('Prototype/SubcriptionPlan');
+            // return 'haii';
+        })->name('subcriptionplan');
     });
 
 require __DIR__ . '/auth.php';
