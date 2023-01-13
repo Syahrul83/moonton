@@ -49,6 +49,10 @@ Route::prefix('/prototype')
         Route::get('/register', function () {
             return Inertia::render('Prototype/Register');
         })->name('register');
+        Route::get('/dashboard', function () {
+            return Inertia::render('Prototype/Dashboard');
+            // return 'dahsboard';
+        })->name('Dashboard');
     });
 
 require __DIR__ . '/auth.php';
