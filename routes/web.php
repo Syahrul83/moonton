@@ -52,11 +52,15 @@ Route::prefix('/prototype')
         Route::get('/dashboard', function () {
             return Inertia::render('Prototype/Dashboard');
             // return 'dahsboard';
-        })->name('Dashboard');
+        })->name('dashboard');
         Route::get('/subcriptionplan', function () {
             return Inertia::render('Prototype/SubcriptionPlan');
             // return 'haii';
         })->name('subcriptionplan');
+        Route::get('/movie/{slug}', function () {
+            return Inertia::render('Prototype/Movie/Show');
+            // return 'haii';
+        })->name('movie.show');
     });
 
 require __DIR__ . '/auth.php';

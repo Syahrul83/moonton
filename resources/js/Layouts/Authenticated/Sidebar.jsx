@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/inertia-react'
+
 export default function Sidebar() {
   return (
     <aside className="fixed z-50 w-[300px] h-full">
@@ -13,7 +14,10 @@ export default function Sidebar() {
           {/* <!-- Menu --> */}
           <div>
             <div className="text-gray-1 text-sm mb-4">Menu</div>
-            <a href="/" className="side-link active">
+            <Link
+              href={route('prototype.dashboard')}
+              className="side-link active"
+            >
               <svg
                 width="24"
                 height="24"
@@ -31,7 +35,7 @@ export default function Sidebar() {
                 </g>
               </svg>
               Discover
-            </a>
+            </Link>
             <a href="#!" className="side-link">
               <svg
                 width="24"
