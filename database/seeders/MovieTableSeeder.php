@@ -23,7 +23,7 @@ class MovieTableSeeder extends Seeder
                 'video_url' => 'https://www.youtube.com/watch?v=sTeoEFzVNSc',
                 'thumbnail' =>
                     'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
-                'rating' => 9.5,
+                'rating' => 4.5,
                 'is_feature' => 1,
             ],
             [
@@ -33,7 +33,7 @@ class MovieTableSeeder extends Seeder
                 'video_url' => 'https://www.youtube.com/watch?v=hCdokb0F9sc',
                 'thumbnail' =>
                     'https://static-cse.canva.com/blob/951431/1600w-y9mFJemyO0E.jpg',
-                'rating' => 8.5,
+                'rating' => 3.5,
                 'is_feature' => 0,
             ],
             [
@@ -43,7 +43,7 @@ class MovieTableSeeder extends Seeder
                 'video_url' => 'https://www.youtube.com/watch?v=Zcy-ND_4ydQ',
                 'thumbnail' =>
                     'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/118596058/original/241cc44f7ea8e1b043df8e735c8fdea0975bcb1d/design-catchy-youtube-thumbnail.jpg',
-                'rating' => 8.5,
+                'rating' => 7.5,
                 'is_feature' => 0,
             ],
         ];

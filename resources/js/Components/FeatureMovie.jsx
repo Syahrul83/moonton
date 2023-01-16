@@ -39,6 +39,7 @@ export default function FeatureMovie({
       </div>
       <Link
         href={route('prototype.movie.show', slug)}
+        method="get"
         className="inset-0 absolute z-50"
       ></Link>
     </div>
