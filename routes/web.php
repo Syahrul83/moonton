@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\MovieController;
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\SubscriptionPlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,10 @@ Route::middleware(['auth', 'role:user'])
             MovieController::class,
             'show',
         ])->name('movie.show');
+        Route::get('subscription-plan', [
+            SubscriptionPlanController::class,
+            'index',
+        ])->name('subscriptionPlan.index');
     });
 
 Route::prefix('/prototype')
