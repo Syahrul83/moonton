@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\MovieController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\SubscriptionPlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,12 +36,35 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::redirect('/', '/prototype/login');
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Route::get('dashboard', function () {
+//     return Inertia::render('User/Dashboard/Index');
+// })
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
+
+Route::redirect('/', '/login');
+
+Route::middleware(['auth', 'role:user'])
+    ->prefix('dashboard')
+    ->name('user.dashboard.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::get('/movie/{movie:slug}', [MovieController::class, 'show'])
+            ->name('movie.show')
+            ->middleware('checkUserSubscription:true');
+        Route::get('subscription-plan', [
+            SubscriptionPlanController::class,
+            'index',
+        ])
+            ->name('subscriptionPlan.index')
+            ->middleware('checkUserSubscription:false');
+        Route::post('subscription-plan/{subscriptionPlan}/user-subscribe', [
+            SubscriptionPlanController::class,
+            'userSubcribe',
+        ])
+            ->name('subscriptionPlan.userSubcribe')
+            ->middleware('checkUserSubscription:false');
+    });
 
 Route::prefix('/prototype')
     ->name('prototype.')
@@ -60,7 +86,7 @@ Route::prefix('/prototype')
         Route::get('/movie/{slug}', function () {
             return Inertia::render('Prototype/Movie/Show');
             // return 'haii';
-        })->name('movie.show');
+        })->name('movie.show1');
     });
 
 require __DIR__ . '/auth.php';
