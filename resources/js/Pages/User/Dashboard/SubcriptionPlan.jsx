@@ -1,7 +1,15 @@
 import SubcriptionCard from '@/Components/SubcriptionCard'
 import Authenticated from '@/Layouts/Authenticated/Index'
-
+import { Inertia } from '@inertiajs/inertia'
 export default function SubcriptionPlan(props) {
+  const selectSubscription = (id) => {
+    //alert(id)
+    Inertia.post(
+      route('user.dashboard.subscriptionPlan.userSubcribe', {
+        subscriptionPlan: id,
+      }),
+    )
+  }
   return (
     <Authenticated auth={props.auth} errors={props.errors}>
       <div className="py-20 flex flex-col items-center">
@@ -19,8 +27,11 @@ export default function SubcriptionPlan(props) {
               isBasic={subscriptionPlan.name == 'Basic' ? true : false}
               name={subscriptionPlan.name}
               price={subscriptionPlan.price}
-              durationInmonth={subscriptionPlan.active_period_in_month}
+              durationInmonth={subscriptionPlan.active_period_in_months}
               feature={JSON.parse(subscriptionPlan.feature)}
+              onSelectSubscription={() =>
+                selectSubscription(subscriptionPlan.id)
+              }
             />
           ))}
         </div>
