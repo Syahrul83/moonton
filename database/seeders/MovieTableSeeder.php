@@ -21,8 +21,8 @@ class MovieTableSeeder extends Seeder
                 'slug' => 'movie-shark',
                 'category' => 'Drama',
                 'video_url' => 'https://www.youtube.com/watch?v=sTeoEFzVNSc',
-                'thumbnail' =>
-                    'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+                // 'thumbnail' =>
+                //     'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
                 'rating' => 4.5,
                 'is_feature' => 1,
             ],
@@ -31,8 +31,8 @@ class MovieTableSeeder extends Seeder
                 'slug' => 'demon-dream',
                 'category' => 'Fantasy',
                 'video_url' => 'https://www.youtube.com/watch?v=hCdokb0F9sc',
-                'thumbnail' =>
-                    'https://static-cse.canva.com/blob/951431/1600w-y9mFJemyO0E.jpg',
+                // 'thumbnail' =>
+                //     'https://static-cse.canva.com/blob/951431/1600w-y9mFJemyO0E.jpg',
                 'rating' => 3.5,
                 'is_feature' => 0,
             ],
@@ -41,8 +41,8 @@ class MovieTableSeeder extends Seeder
                 'slug' => 'dragon-dream',
                 'category' => 'Fantasy',
                 'video_url' => 'https://www.youtube.com/watch?v=Zcy-ND_4ydQ',
-                'thumbnail' =>
-                    'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/118596058/original/241cc44f7ea8e1b043df8e735c8fdea0975bcb1d/design-catchy-youtube-thumbnail.jpg',
+                // 'thumbnail' =>
+                //     'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/118596058/original/241cc44f7ea8e1b043df8e735c8fdea0975bcb1d/design-catchy-youtube-thumbnail.jpg',
                 'rating' => 7.5,
                 'is_feature' => 0,
             ],
