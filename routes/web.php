@@ -43,6 +43,11 @@ use App\Http\Controllers\User\SubscriptionPlanController;
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
 
+Route::post('midtrans/notification', [
+    SubscriptionPlanController::class,
+    'midtransCallback',
+]);
+
 Route::redirect('/', '/login');
 
 Route::middleware(['auth', 'role:user'])

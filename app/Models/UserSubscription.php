@@ -16,7 +16,7 @@ class UserSubscription extends Model
         'price',
         'expired_date',
         'payment_status',
-        'snapToken',
+        'snap_token',
     ];
 
     /**
@@ -24,6 +24,7 @@ class UserSubscription extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+
     public function subscriptionPlan(): BelongsTo
     {
         return $this->belongsTo(SubscriptionPlan::class);
