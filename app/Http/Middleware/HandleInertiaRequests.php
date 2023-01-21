@@ -63,6 +63,10 @@ private function activePlan(){
                 'message' => Session::get('message'),
                 'type' =>Session::get('type'),
             ],
+
+            'env' => [
+                'MIDTRANS_CLIENT_KEY' => env('MIDTRANS_CLIENT_KEY'),
+            ],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),

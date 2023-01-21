@@ -25,6 +25,9 @@ export default function Dashboard(props) {
         <div className="font-semibold text-[22px] text-black mb-4">
           Featured Movies
         </div>
+        {props.flashMessage?.message && (
+          <FlashMessage message={props.flashMessage.message} />
+        )}
         <Flickity className="gap-[30px]" options={flickityOptions}>
           {/* <!-- Movie Thumbnail --> */}
 
