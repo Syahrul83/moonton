@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Movie;
+
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Admin\Movie\Store;
+use App\Http\Requests\Admin\Movie\Update;
 
 class AdminMovieController extends Controller
 {
@@ -15,8 +20,10 @@ class AdminMovieController extends Controller
      */
     public function index()
     {
-        $movie = Movie::all();
-        return inertia('Admin/Movie/Index', compact('movie'));
+        $movies = Movie::withTrashed()
+            ->orderBy('deleted_at')
+            ->get();
+        return inertia('Admin/Movie/Index', compact('movies'));
     }
 
     /**
@@ -26,7 +33,7 @@ class AdminMovieController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Admin/Movie/Create');
     }
 
     /**
@@ -35,9 +42,25 @@ class AdminMovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        //
+        // $fileName = time() . '.' . $request->thumbnail->extension();
+        // $request->file->move(public_path('uploads'), $fileName);
+
+        $data = $request->validated();
+        $data['thumbnail'] = Storage::disk('public')->put(
+            'movies',
+            $request->file('thumbnail')
+        );
+        $data['slug'] = Str::slug($data['name']);
+        Movie::create($data);
+
+        return redirect()
+            ->route('admin.dashboard.movie.index')
+            ->with([
+                'message' => 'Movie Insert Succesfuly',
+                'type' => 'success',
+            ]);
     }
 
     /**
@@ -59,7 +82,7 @@ class AdminMovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        return inertia('Admin/Movie/Edit', compact('movie'));
     }
 
     /**
@@ -69,9 +92,28 @@ class AdminMovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Update $request, Movie $movie)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->file('thumbnail')) {
+            $data['thumbnail'] = Storage::disk('public')->put(
+                'movie',
+                $request->file('thumbnail')
+            );
+        } else {
+            $data['thumbnail'] = $movie->thumbnail;
+        }
+        $data['slug'] = Str::slug($movie['name']);
+
+        $movie->update($data);
+
+        return redirect()
+            ->route('admin.dashboard.movie.index')
+            ->with([
+                'message' => 'Movie Update Succesfuly',
+                'type' => 'success',
+            ]);
     }
 
     /**
@@ -82,6 +124,25 @@ class AdminMovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return redirect()
+            ->route('admin.dashboard.movie.index')
+            ->with([
+                'message' => 'Movie delete Succesfuly',
+                'type' => 'success',
+            ]);
+    }
+
+    public function restore($movie)
+    {
+        Movie::withTrashed()
+            ->find($movie)
+            ->restore();
+        return redirect()
+            ->route('admin.dashboard.movie.index')
+            ->with([
+                'message' => 'Movie Restore Succesfuly',
+                'type' => 'success',
+            ]);
     }
 }
