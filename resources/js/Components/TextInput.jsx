@@ -15,6 +15,7 @@ export default forwardRef(function TextInput(
     required,
     isFocused,
     handleChange,
+    accept,
   },
   ref,
 ) {
@@ -42,6 +43,7 @@ export default forwardRef(function TextInput(
         required={required}
         onChange={(e) => handleChange(e)}
         placeholder={placeholder}
+        accept={accept}
       />
     </div>
   )
