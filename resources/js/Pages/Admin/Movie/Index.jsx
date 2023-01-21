@@ -1,10 +1,11 @@
 import DangerButton from '@/Components/DangerButton'
 import FlashMessage from '@/Components/FlashMessage'
 import Authenticated from '@/Layouts/Authenticated/Index'
-import { Head, Link } from '@inertiajs/inertia-react'
+import { Head, Link, useForm } from '@inertiajs/inertia-react'
 
 export default function Index(props) {
   // console.log(props.flashMessage)
+  const { delete: destroy, put } = useForm()
   return (
     <Authenticated auth={props.auth} errors={props.errors}>
       <Head>
@@ -58,13 +59,23 @@ export default function Index(props) {
                   </Link>
                 </td>
                 <td>
-                  <DangerButton
-                    type="button"
-                    variant="danger"
-                    className="w-40 mb-8"
+                  <div
+                    onClick={() => {
+                      movie.deleted_at
+                        ? put(route('admin.dashboard.movie.restore', movie.id))
+                        : destroy(
+                            route('admin.dashboard.movie.destroy', movie.id),
+                          )
+                    }}
                   >
-                    Delete
-                  </DangerButton>
+                    <DangerButton
+                      type="button"
+                      variant="danger"
+                      className="w-40 mb-8"
+                    >
+                      {movie.deleted_at ? 'Restore' : 'Delete'}
+                    </DangerButton>
+                  </div>
                 </td>
               </tr>
             ))}
