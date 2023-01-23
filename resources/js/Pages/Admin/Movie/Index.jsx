@@ -46,7 +46,7 @@ export default function Index(props) {
                 </td>
                 <td>{movie.name}</td>
                 <td>{movie.category}</td>
-                <td>{movie.rating.toFixed(1)}</td>
+                <td>{parseFloat(movie.rating).toFixed(1)}</td>
                 <td>
                   <Link href={route('admin.dashboard.movie.edit', movie.id)}>
                     <DangerButton
