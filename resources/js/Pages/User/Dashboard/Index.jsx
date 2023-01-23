@@ -13,6 +13,7 @@ export default function Dashboard(props) {
     prevNextButtons: false,
     draggable: '>1',
   }
+  console.log(props.env)
   return (
     <Authenticated auth={props.auth} errors={props.errors}>
       <Head>
@@ -33,7 +34,7 @@ export default function Dashboard(props) {
 
           {props.featureMovies.map((featureMovie) => (
             <FeatureMovie
-              key={featureMovie.id}
+              key={`${featureMovie.id}-${featureMovie.slug}`}
               name={featureMovie.name}
               slug={featureMovie.slug}
               rating={featureMovie.rating}
