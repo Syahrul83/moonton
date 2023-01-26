@@ -1,9 +1,10 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["resources/js/*"]
-        }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["resources/js/*"]
     },
-    "exclude": ["node_modules", "public"]
+    "noImplicitAny": false
+  },
+  "exclude": ["node_modules", "public"]
 }

@@ -29,7 +29,13 @@ export default function Dashboard(props) {
         {props.flashMessage?.message && (
           <FlashMessage message={props.flashMessage.message} />
         )}
-        <Flickity className="gap-[30px]" options={flickityOptions}>
+        <Flickity
+          className="gap-[30px]"
+          options={flickityOptions}
+          disableImagesLoaded={false}
+          reloadOnUpdate
+          static
+        >
           {/* <!-- Movie Thumbnail --> */}
 
           {props.featureMovies.map((featureMovie) => (
@@ -47,11 +53,17 @@ export default function Dashboard(props) {
           <div className="font-semibold text-[22px] text-black mb-4">
             Browse
           </div>
-          <Flickity className="" options={flickityOptions}>
+          <Flickity
+            className=""
+            options={flickityOptions}
+            disableImagesLoaded={false}
+            reloadOnUpdate
+            static
+          >
             {/* <!-- Movies 1 --> */}
-            {props.movies.map((movie) => (
+            {props.movies.map((movie, i) => (
               <MovieCard
-                key={movie.id}
+                key={`${movie.id}-${i}`}
                 name={movie.name}
                 slug={movie.slug}
                 thumbnail={movie.thumbnail}
